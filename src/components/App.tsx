@@ -4,11 +4,15 @@ import { Login } from "./Login";
 
 const mapStateToProps = s => s;
 
-export const App = connect(mapStateToProps)(({ user }) => {
-    console.log(user);
-    if (user) {
-        return <div>This is the app</div>;
-    } else {
-        return <Login />;
+class $App extends React.Component<any> {
+    render() {
+        const { user } = this.props;
+        if (user) {
+            return <div>This is the app</div>;
+        } else {
+            return <Login />;
+        }
     }
-});
+}
+
+export const App = connect(mapStateToProps)($App);

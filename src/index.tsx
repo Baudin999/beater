@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import { App } from "./components/App";
 import { store } from "./redux/store";
 
-import { initFirebase } from "./services/firebase";
+import { initFirebase } from "./services/_firebase";
 import { log } from "./services/log";
 
 initFirebase().then(() => {
