@@ -1,6 +1,6 @@
 import * as React from "react";
 import { log } from "./../services/log";
-import { login } from "./../services/firebase";
+import { login } from "./../services/_firebase";
 import { userLoggedIn } from "../redux/actions";
 
 export class Login extends React.Component<any, IState> {

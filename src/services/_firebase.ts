@@ -6,7 +6,7 @@ import firebaseConfig from "./../../firebase-config.json";
 import "firebase/auth";
 import "firebase/database";
 import { log } from "./log";
-import { userLoggedIn } from "../redux/actions.js";
+import { userLoggedIn } from "../redux/actions";
 
 export const initFirebase = () => {
     return new Promise((resolve, reject) => {
