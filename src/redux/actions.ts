@@ -15,10 +15,15 @@ export const userLoggedIn = user => {
     firebase
         .database()
         .ref(user.uid)
-        // @ts-ignore
-        .once(snapshot => {
+        .once("value")
+        .then(snapshot => {
+            try {
             let value = snapshot.val();
             console.log(value);
+            }
+            catch(err) {
+                console.log(err)
+            }
         });
 
 };

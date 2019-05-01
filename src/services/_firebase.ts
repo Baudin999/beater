@@ -13,18 +13,20 @@ export const initFirebase = () => {
         try {
             // init the firebase app
             firebase.initializeApp(firebaseConfig);
-            setTimeout(resolve, 0);
+            setTimeout(() => {
+                resolve();
+                // onAuthStateChanged
+                firebase.auth().onAuthStateChanged(user => {
+                    if (user) {
+                        console.log("onAuthStateChanged");
+                        console.log(user);
+                        userLoggedIn(user);
+                    } else {
+                        //do sth
+                    }
+                });
+            }, 0);
 
-            // onAuthStateChanged
-            firebase.auth().onAuthStateChanged(user => {
-                if (user) {
-                    console.log("onAuthStateChanged");
-                    console.log(user);
-                    userLoggedIn(user);
-                } else {
-                    //do sth
-                }
-            });
         } catch (err) {
             reject(log(err));
         }
