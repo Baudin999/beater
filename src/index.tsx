@@ -4,18 +4,24 @@ import { Provider } from "react-redux";
 import { App } from "./components/App";
 import { store } from "./redux/store";
 
+import "./assets/font-awesome/js/all";
+
+import "bootstrap";
+import "jquery";
+import "popper.js";
+
 import { initFirebase } from "./services/_firebase";
 import { log } from "./services/log";
 
 initFirebase().then(() => {
-    log("Initialized the database");
+  log("Initialized the database");
 });
 
 let root = document.getElementById("root");
 
 ReactDOM.render(
-    <Provider store={store}>
-        <App />
-    </Provider>,
-    root
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  root
 );

@@ -1,0 +1,15 @@
+@import "./../variables";
+
+.add-button {
+  height: 2rem;
+  width: 2rem;
+  color: $primary;
+
+  &:hover {
+    cursor: pointer;
+  }
+  svg.svg-inline--fa {
+    height: 100%;
+    width: 100%;
+  }
+}

@@ -1,23 +1,29 @@
 import { Events } from "./actions";
 
-let defaultState = {};
+let defaultState: IState = {};
 
 export const reducer = (state = defaultState, action) => {
-    switch (action.type) {
-        case "USER_LOGGED_IN":
-            return {
-                ...state,
-                user: action.payload
-            };
-        default:
-            return state;
-    }
+  switch (action.type) {
+    case "USER_LOGGED_IN":
+      return {
+        ...state,
+        user: action.payload
+      };
+    case "CHARACTERS_GOTTEN":
+      return {
+        ...state,
+        characters: action.payload
+      };
+    default:
+      return state;
+  }
 };
 
 export interface IState {
-    user?: IUser;
+  user?: IUser;
 }
 
 export interface IUser {
-    name: string;
+  email: string;
+  uid: string;
 }

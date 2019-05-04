@@ -3,33 +3,18 @@ import { log } from "./../services/log";
 import { login } from "./../services/_firebase";
 import { userLoggedIn } from "../redux/actions";
 
+import Form from "react-jsonschema-form";
+import { loginSchema, loginUiSchema } from "./../forms/login";
+
 export class Login extends React.Component<any, IState> {
-    state: IState = {
-        userName: "",
-        password: "",
-        message: ""
-    };
+    
 
-    changeUserName = event => {
-        this.setState({
-            ...this.state,
-            userName: event.target.value
-        });
-    };
+    submit = (r) => {
+        let {email, password} = r.formData;
 
-    changePassword = event => {
-        this.setState({
-            ...this.state,
-            password: event.target.value
-        });
-    };
-
-    submit = () => {
-        let { userName, password } = this.state;
-        if (!userName || !password) return;
-        login(userName, password)
+        login(email, password)
             .then(user => {
-                log(`User ${userName} successfully logged in`);
+                log(`User ${email} successfully logged in`);
                 userLoggedIn(user);
             })
             .catch(error => {
@@ -39,25 +24,8 @@ export class Login extends React.Component<any, IState> {
 
     render() {
         return (
-            <div className="login">
-                <h1>Login</h1>
-                <form>
-                    <div>
-                        <label>Email:</label>
-                        <input value={this.state.userName} onChange={this.changeUserName} />
-                    </div>
-                    <div>
-                        <label>Password:</label>
-                        <input
-                            type="password"
-                            value={this.state.password}
-                            onChange={this.changePassword}
-                        />
-                    </div>
-                    <button type="button" onClick={this.submit}>
-                        Login
-                    </button>
-                </form>
+             <div className="login">            
+                <Form schema={loginSchema} uiSchema={loginUiSchema} onSubmit={this.submit}/>
             </div>
         );
     }
