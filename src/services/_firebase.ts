@@ -31,6 +31,10 @@ export const initFirebase = () => {
   });
 };
 
+export const logout = () => {
+  return firebase.auth().signOut();
+};
+
 export const login = (email, password) => {
   return new Promise((resolve, reject) => {
     let $email = email || "foo@bar.com";

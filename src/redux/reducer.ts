@@ -9,6 +9,8 @@ export const reducer = (state = defaultState, action) => {
         ...state,
         user: action.payload
       };
+    case "USER_LOGGED_OUT":
+      return { ...defaultState };
     case "CHARACTERS_GOTTEN":
       return {
         ...state,
@@ -18,6 +20,11 @@ export const reducer = (state = defaultState, action) => {
       return {
         ...state,
         characters: [...(state.characters || []), action.payload]
+      };
+    case "CHARACTER_DELETED":
+      return {
+        ...state,
+        characters: (state.characters || []).filter(c => c.name !== action.payload.name)
       };
     default:
       return state;

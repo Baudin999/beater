@@ -1,18 +1,31 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { getCharacters } from "../redux/actions";
+import { Link } from "react-router-dom";
+import { getCharacters, deleteCharacter } from "../redux/actions";
 import { ICharacter } from "../interfaces";
 import { AddButton } from "./snippets/AddButton";
 
-const CharacterCard = ({ character }) => {
+const CharacterListCard = ({ character }) => {
   return (
-    <div className="card" style={{}}>
+    <div className="card character-list-card" style={{}}>
       <div className="card-body">
-        <h5 className="card-title">{character.name}</h5>
-        <p className="card-text">
-          Some quick example text to build on the card title and make up the bulk of the card's
-          content.
-        </p>
+        <h2 className="card-title">
+          <Link to={`/character/${character.name}`}>{character.name}</Link>
+        </h2>
+        <h3>
+          {character.profession}
+          {character.specialization && ` - ${character.specialization}`}
+        </h3>
+        <div>
+          {Object.keys(character.statistics || {})
+            .map(key => {
+              return `${key}: ${character.statistics[key]}`;
+            })
+            .join(", ")}
+        </div>
+        <div className="remove-character" onClick={deleteCharacter(character)}>
+          <i className="fas fa-minus-circle" />
+        </div>
       </div>
     </div>
   );
@@ -31,7 +44,7 @@ class _Characters extends React.Component<any> {
       <div className="content">
         <div className="card-columns">
           {characters.map(c => (
-            <CharacterCard key={c.name} character={c} />
+            <CharacterListCard key={c.name} character={c} />
           ))}
         </div>
         <AddButton link="/characters/create" />

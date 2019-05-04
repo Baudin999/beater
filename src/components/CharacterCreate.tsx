@@ -4,7 +4,6 @@ import Form from "react-jsonschema-form";
 import { schema, uiSchema, transformErrors, defaultCharacter } from "./../forms/character-create";
 import { Content } from "./snippets/Content";
 import { StackPanel } from "./snippets/StackPanel";
-import { findSchemaDefinition } from "./../forms/helpers";
 import { saveCharacter } from "../redux/actions";
 
 const CharacterCard = ({ character }) => {
@@ -29,7 +28,9 @@ export class CharacterCreate extends React.Component<any, any> {
     character: defaultCharacter
   };
   submit = r => {
-    saveCharacter(r.formData);
+    saveCharacter(r.formData).then(() => {
+      this.props.history.push("/characters");
+    });
   };
 
   onChange = r => {

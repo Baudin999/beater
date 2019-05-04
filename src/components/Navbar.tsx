@@ -1,6 +1,7 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { logout } from "../redux/actions";
 
 const $Link = ({ path, text, currentPath = window.location.pathname }) => {
   return (
@@ -38,7 +39,9 @@ export class Nav extends React.Component<INavProps> {
             <$Link path="/characters" currentPath={path} text="Characters" />
             <$Link path="/profile" currentPath={path} text="Profile" />
           </ul>
-          <span className="navbar-text">{email}</span>
+          <span className="email navbar-text" onClick={logout}>
+            {email}
+          </span>
         </div>
       </nav>
     );
