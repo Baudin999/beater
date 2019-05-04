@@ -14,6 +14,11 @@ export const reducer = (state = defaultState, action) => {
         ...state,
         characters: action.payload
       };
+    case "CHARACTER_CREATED":
+      return {
+        ...state,
+        characters: [...(state.characters || []), action.payload]
+      };
     default:
       return state;
   }
@@ -21,6 +26,7 @@ export const reducer = (state = defaultState, action) => {
 
 export interface IState {
   user?: IUser;
+  characters?: any[];
 }
 
 export interface IUser {

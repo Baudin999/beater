@@ -34,7 +34,7 @@ class _Characters extends React.Component<any> {
             <CharacterCard key={c.name} character={c} />
           ))}
         </div>
-        <AddButton />
+        <AddButton link="/characters/create" />
       </div>
     );
   }

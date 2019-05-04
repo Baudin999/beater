@@ -1,0 +1,5 @@
+.character-card {
+  $width: 200px;
+  min-width: $width;
+  flex-basis: $width;
+}

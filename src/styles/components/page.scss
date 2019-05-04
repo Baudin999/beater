@@ -2,9 +2,18 @@
   height: 100%;
   width: 100%;
   overflow: hidden;
+  position: relative;
 
   .content {
     overflow: auto;
     padding: 1rem;
+
+    &.fixed {
+      max-width: 780px;
+      width: 100%;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
   }
 }

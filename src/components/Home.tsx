@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import { Footer } from "./Footer";
 import { Characters } from "./Characters";
 import { IState } from "../redux/reducer";
+import { CharacterCreate } from "./CharacterCreate";
 
 const Status = () => {
   return <div>Status</div>;
@@ -19,7 +20,8 @@ class $Home extends React.Component<IState> {
         <div className="page">
           <Nav email={user.email} />
           <Route exact path="/" component={Status} />
-          <Route path="/characters" component={Characters} />
+          <Route exact path="/characters" component={Characters} />
+          <Route exact path="/characters/create" component={CharacterCreate} />
           <Footer />
         </div>
       </Router>
