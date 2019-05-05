@@ -26,6 +26,11 @@ export const reducer = (state = defaultState, action) => {
         ...state,
         characters: (state.characters || []).filter(c => c.name !== action.payload.name)
       };
+    case "CHARACTER_SELECTED":
+      return {
+        ...state,
+        selectedCharacter: (state.characters || []).find(c => c.name === action.payload)
+      };
     default:
       return state;
   }

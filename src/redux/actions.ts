@@ -7,13 +7,16 @@ export enum Events {
   USER_LOGGED_OUT = "USER_LOGGED_OUT",
   CHARACTERS_GOTTEN = "CHARACTERS_GOTTEN",
   CHARACTER_CREATED = "CHARACTER_CREATED",
-  CHARACTER_DELETED = "CHARACTER_DELETED"
+  CHARACTER_DELETED = "CHARACTER_DELETED",
+  CHARACTER_SELECTED = "CHARACTER_SELECTED"
 }
 
 export const userLoggedIn = user => {
-  dispatch({
-    type: Events.USER_LOGGED_IN,
-    payload: user
+  getCharacters(user.uid).then(() => {
+    dispatch({
+      type: Events.USER_LOGGED_IN,
+      payload: user
+    });
   });
 };
 
@@ -26,7 +29,7 @@ export const logout = () => {
 };
 
 export const getCharacters = (uid: string) => {
-  firebase
+  return firebase
     .database()
     .ref(uid)
     .once("value")
@@ -75,4 +78,11 @@ export const deleteCharacter = character => () => {
         payload: character
       });
     });
+};
+
+export const selectCharacter = (name: string) => {
+  dispatch({
+    type: Events.CHARACTER_SELECTED,
+    payload: name
+  });
 };
