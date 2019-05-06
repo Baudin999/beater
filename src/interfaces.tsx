@@ -24,6 +24,7 @@ export interface ICharacter {
   race: string;
   skills: ICharacterSkill[];
   weapons: ICharacterWeapon[];
+  script: string;
 }
 
 export interface ICharacterSkill {
@@ -60,4 +61,18 @@ export interface IWeapon {
   description: string;
   dmg: string;
   ap: number;
+}
+
+export interface IOpponent {
+  name: string;
+  dmg: string;
+  hp: number;
+}
+
+export interface ILog {
+  entries: ILogEntry[];
+}
+
+export interface ILogEntry {
+  info: string;
 }

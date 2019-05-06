@@ -1,4 +1,5 @@
 import { Events } from "./actions";
+import { ICharacter } from "../interfaces";
 
 let defaultState: IState = {};
 
@@ -38,7 +39,8 @@ export const reducer = (state = defaultState, action) => {
 
 export interface IState {
   user?: IUser;
-  characters?: any[];
+  characters?: ICharacter[];
+  selectedCharacter?: ICharacter;
 }
 
 export interface IUser {

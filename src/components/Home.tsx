@@ -1,5 +1,4 @@
 import * as React from "react";
-import { log } from "./../services/log";
 import { Nav } from "./Navbar";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { connect } from "react-redux";
@@ -15,11 +14,11 @@ const Status = () => {
 
 class $Home extends React.Component<IState> {
   render() {
-    let { user } = this.props;
+    let { user, selectedCharacter } = this.props;
     return (
       <Router>
         <div className="page">
-          <Nav email={user.email} />
+          <Nav email={user.email} selectedCharacter={selectedCharacter} />
           <Route exact path="/" component={Status} />
           <Route exact path="/characters" component={Characters} />
           <Route exact path="/characters/create" component={CharacterCreate} />

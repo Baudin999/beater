@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import Form from "react-jsonschema-form";
-import { statistics, defaultCharacter, SkillTypes, WeaponTypes } from "./../forms/data";
+import { statistics, defaultCharacter } from "./../forms/data";
 import { schema, uiSchema, transformErrors } from "./../forms/character-create";
 import { Content } from "./snippets/Content";
 import { StackPanel } from "./snippets/StackPanel";
@@ -27,6 +27,8 @@ export class CharacterCreate extends React.Component<any, any> {
     let race = newCharacter.race;
     let stats = statistics[race];
     newCharacter.statistics = { ...stats };
+
+    console.log(newCharacter);
 
     // save the new character
     saveCharacter(newCharacter).then(() => {
