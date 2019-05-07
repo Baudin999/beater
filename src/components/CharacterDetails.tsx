@@ -6,6 +6,7 @@ import { StackPanel } from "./snippets/StackPanel";
 import { Button, SaveButton } from "./snippets/Button";
 import { fight } from "../services/combat";
 import { IOpponent } from "../interfaces";
+import { rat } from "../forms/data.opponents";
 
 const NoCharacterSelected = () => {
   return <h1>No character selected</h1>;
@@ -43,18 +44,20 @@ class _CharacterDetails extends React.Component<any, any> {
     });
   };
   fight = () => {
-    let opponent: IOpponent = {
-      name: "Rat",
-      hp: 25,
-      dmg: "1d4 + 2"
-    };
-
-    let log = fight(this.state.character, opponent);
+    let log = fight([this.state.character], [rat]);
     console.log(log);
+    this.setState({
+      ...this.state,
+      result: log
+    });
   };
   render() {
     let { character } = this.state;
     if (!character) return <NoCharacterSelected />;
+    let reducedItems = (character.items || []).reduce((acc, item) => {
+      acc[item.name] = acc[item.name] > 0 ? acc[item.name] + 1 : 1;
+      return acc;
+    }, {});
     return (
       <Content className="fixed">
         <div className="content">
@@ -72,6 +75,8 @@ class _CharacterDetails extends React.Component<any, any> {
                 <li>Action Points (AP): {character.ap}</li>
               </ul>
 
+              <hr />
+              <div>Money: {character.money}</div>
               <hr />
 
               <div>
@@ -93,7 +98,21 @@ class _CharacterDetails extends React.Component<any, any> {
                   </div>
                 ))}
               </div>
+
+              <hr />
+
+              <div>
+                <h2>Items</h2>
+                {Object.keys(reducedItems).map((key, i) => {
+                  return (
+                    <li key={i}>
+                      [{reducedItems[key]}] {key}
+                    </li>
+                  );
+                })}
+              </div>
             </div>
+
             <div style={{ flex: "1", display: "flex", flexDirection: "column" }}>
               <h2>Script</h2>
               <div style={{ flex: "1 0" }}>
@@ -109,6 +128,14 @@ class _CharacterDetails extends React.Component<any, any> {
         <div className="button-bar">
           <Button title="Try" icon="fas fa-dice-d20" type="primary" onClick={this.fight} />
           <SaveButton />
+        </div>
+        <div>
+          <ul>
+            {this.state.result &&
+              (this.state.result.entries || []).map((entry, i) => {
+                return <li key={i}>{entry}</li>;
+              })}
+          </ul>
         </div>
       </Content>
     );

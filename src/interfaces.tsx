@@ -25,6 +25,8 @@ export interface ICharacter {
   skills: ICharacterSkill[];
   weapons: ICharacterWeapon[];
   script: string;
+  items: ILoot[];
+  money: number;
 }
 
 export interface ICharacterSkill {
@@ -42,7 +44,7 @@ export interface ICharacterWeapon {
   name: string;
   description: string;
   dmg: string;
-  ap: number;
+  speed: number;
   notes: string;
 }
 
@@ -60,19 +62,35 @@ export interface IWeapon {
   name: string;
   description: string;
   dmg: string;
-  ap: number;
+  speed: number;
+}
+
+export interface IItem {
+  name: string;
+  description: string;
+  price: number;
 }
 
 export interface IOpponent {
   name: string;
   dmg: string;
   hp: number;
+  money: string;
+  items: ILoot[];
+  numberOfItems: number;
 }
 
 export interface ILog {
   entries: ILogEntry[];
+  victorious: boolean;
+  money: number;
+  loot: ILoot[];
+  party: ICharacter[];
+  opponents: IOpponent[];
 }
 
 export interface ILogEntry {
   info: string;
 }
+
+export type ILoot = IItem | IWeapon;

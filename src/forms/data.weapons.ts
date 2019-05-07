@@ -7,8 +7,24 @@ export const weapons: IWeapon[] = [
     type: WeaponTypes.Sword,
     name: "Blunt Sword",
     description: "A simple sword.",
-    dmg: "1d6 + 1",
-    ap: 3
+    dmg: "1d6+0",
+    speed: 15
+  },
+  {
+    id: "07035812-5d2b-4e5a-a72e-9969563dbcc0",
+    type: WeaponTypes.Sword,
+    name: "Rusty Sword",
+    description: "A simple sword.",
+    dmg: "1d6+1",
+    speed: 15
+  },
+  {
+    id: "a018ed2e-b28c-4b67-bf9f-6db231c58fad",
+    type: WeaponTypes.Dagger,
+    name: "Rusty Dagger",
+    description: "A rusty dagger.",
+    dmg: "1d4+1",
+    speed: 15
   }
 ];
 
@@ -35,8 +51,6 @@ export const getCharacterWeaponByName = (name: string): ICharacterWeapon => {
 
 /*
 DELETE ID after use!
-07035812-5d2b-4e5a-a72e-9969563dbcc0
-a018ed2e-b28c-4b67-bf9f-6db231c58fad
 754bbe97-1891-4bf2-8dfa-814450ebd1c9
 70de0f5a-b4a3-4917-a6cb-e0d12de39e64
 99d1d085-1051-4d48-bd67-418598b56250

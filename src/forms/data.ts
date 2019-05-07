@@ -17,6 +17,8 @@ export const defaultCharacter: ICharacter = {
   ap: 3,
   skills: [getCharacterSkillByName("Sword Attack"), getCharacterSkillByName("Dodge")],
   weapons: [getCharacterWeaponByName("Blunt Sword")],
+  money: 0,
+  items: [],
   script: `[Attack]
 Sword Attack - Blunt Sword
 

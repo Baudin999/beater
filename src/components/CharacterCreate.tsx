@@ -28,8 +28,6 @@ export class CharacterCreate extends React.Component<any, any> {
     let stats = statistics[race];
     newCharacter.statistics = { ...stats };
 
-    console.log(newCharacter);
-
     // save the new character
     saveCharacter(newCharacter).then(() => {
       this.props.history.push("/characters");
